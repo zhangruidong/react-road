@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<!--把type改为text/babel,浏览器js解析引擎就不在会读取该标签内的内容，这里的内容指定为babel，babel就会读取解析，然后交由浏览器解析-->
+<script type="text/babel">
+/*
+* ReactDOM 对象
+*   ReactDOM.render（内容，容器）
+*       渲染指定内容到指定容器中
+*
+*   JSX
+*       可以嵌套，添加自己元素
+*       只支持一个顶级元素
+*       支持插值表达式: 在XML中书写js，不是所有的js都支持嵌入，表达式，类似ES6中的模板字符串
+*
+*       插值表达式注意：
+*           布尔值，null, undefined 输出空字符
+*           不支持插值对象
+*           数组可以，但是数组tostring后和原生不一样   [1,2,3]   =>>    123
+*
+* */
+
+    let username = "zrd"
+    let n = 10;
+  ReactDOM.render(
+      <div>
+          <h1>hello,world!</h1>
+          <div>插值表达式：{username}</div>
+          <div>{n}</div>
+          <div>{null}</div>
+          <div>{undefined}</div>
+          <div>{ /*{a:1}*/ }</div>
+          <div>{[1,2,3]}</div>
+      </div>,
+      root
+  )
+
+</script>
+</body>
+</html>

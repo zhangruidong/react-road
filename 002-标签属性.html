@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <style>
+        .zrd {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<!--把type改为text/babel,浏览器js解析引擎就不在会读取该标签内的内容，这里的内容指定为babel，babel就会读取解析，然后交由浏览器解析-->
+<script type="text/babel">
+/*
+* ReactDOM 对象
+*   ReactDOM.render（内容，容器）
+*       渲染指定内容到指定容器中
+*
+*   JSX
+*       元素的属性
+*           属性的值需要用引号包起来
+*           属性也支持插值表达式
+*           注意：
+*               class 属性  应该用 className
+*               style 属性   只接受对象类型的值  {color: "white"}
+*                   插值表达式在内容中不能输出对象，但是在属性中可以输出对象
+*
+* */
+
+    let username = "zrd"
+    let n = 10;
+  ReactDOM.render(
+      <h1 id="title" className={username} style={{color: "white"}}>title</h1>,
+      root
+  )
+
+</script>
+</body>
+</html>

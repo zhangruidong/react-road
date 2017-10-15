@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <style>
+        .zrd {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+/*
+*列表循环
+*   插值语法只支持表达式
+* */
+
+    let arr = ["vue","react","angular"]
+  ReactDOM.render(
+      <div>
+          <ul>
+            {
+              arr.map( (user,index) => {
+                return <li key={index}>{user}</li>
+              })
+            }
+          </ul>
+      </div>
+      ,
+      root
+  )
+
+</script>
+</body>
+</html>
