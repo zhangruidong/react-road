@@ -1,27 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-/*class Welcome extends React.Component {
-  render() {
+class Toggle extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state= {isToggle:true}
+    // this.handleClick=this.handleClick.bind(this)
+  }
+  handleClick= () => {
+    this.setState( prevState => ({isToggle: !prevState.isToggle}))
+  }
+  render (){
     return (
-        <h1>
-          Hello zhangruidong! -_-
-        </h1>
+        <button onClick={this.handleClick}>{this.state.isToggle?'on':'off'}</button>
     )
   }
-}*/
-
-function Welcome(props) {
-  return (
-      <h1>
-        Hello zhangruidong! -_-  {props.name}
-      </h1>
-  )
 }
 
-const ELEMETN = <Welcome name="zzzrd"/>
 
 ReactDOM.render(
-    ELEMETN,
+    <Toggle/>,
     document.getElementById('root')
 )
