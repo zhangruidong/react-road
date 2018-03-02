@@ -2,34 +2,30 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 /*
-* 使用 PropTypes 检查类型
+* refs
 *
 * */
-class MyComponent extends React.Component {
+class CustomTextInput extends React.Component {
+  constructor(props) {
+    super()
+  }
+  focus = ()=>{
+    console.log(this.textInput);
+    this.textInput.focus()
+  }
   render() {
-    // This must be exactly one element or it will warn.
-    const children = this.props.children;
     return (
         <div>
-          {children}
-          {this.props.name}
+          <input type="text" ref={ (input) => {this.textInput = input} }/>
+          <input type="button" onClick={this.focus} value={'focus'}/>
         </div>
-    );
+    )
   }
 }
-
-MyComponent.defaultProps= {
-  name:'back'
-}
-
-MyComponent.propTypes = {
-  children: PropTypes.element.isRequired,
-  name: PropTypes.string
-};
 
 
 
 ReactDOM.render(
-    <MyComponent name={'zrd'}><h2>zzzzzz</h2></MyComponent>,
+    <CustomTextInput/>,
     document.getElementById('root')
 );
