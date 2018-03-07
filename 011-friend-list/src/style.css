@@ -1,0 +1,12 @@
+h2,li {
+    cursor: pointer;
+}
+
+.group {
+    background: grey;
+    margin-bottom: 10px;
+}
+
+.title {
+    background: darkcyan;
+}
