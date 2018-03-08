@@ -1,3 +1,6 @@
+ul,li,h2 {
+    margin: 0;
+}
 h2,li {
     cursor: pointer;
 }
@@ -9,4 +12,9 @@ h2,li {
 
 .title {
     background: darkcyan;
+}
+
+.list {
+    transition: .5s;
+    overflow: hidden;
 }
