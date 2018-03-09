@@ -16,7 +16,11 @@ export default class Header extends React.Component {
   };
   handleSubmit= (e) => {
     e.preventDefault();
-    this.props.addList(this.state)
+    this.props.addList(this.state);
+    this.setState({
+      title:'',
+      singer:''
+    })
   }
   render() {
     return (

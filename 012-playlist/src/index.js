@@ -44,6 +44,14 @@ class App extends React.Component {
   maxId(){
     return Math.max(...this.props.data.map( (item) => item.id ));
   };
+  checkAll() {
+    for (let i = 0; i < this.props.data.length; i++) {
+        if(!this.props.data[i].selected){
+          return false;
+        }
+    }
+    return true;
+  }
   addList= (item) => {
     let newItem = {
       id: this.maxId()+1,
@@ -52,17 +60,59 @@ class App extends React.Component {
       selected: false,
       like: false
     };
-    console.log(this.props.data);
-    this.setState( {data:[...this.state.data,newItem]} );
-    
-    // this.props.data = this.props.data.concat([newItem]);
-    
-  }
+    let data = this.state.data;
+    data.push(newItem);
+    this.setState( {data} );
+  };
+  handleCheckAll = (e) => {
+    let data = this.state.data;
+    data.forEach( item => {
+      item.selected = e.target.checked;
+    })
+    this.setState( {data} )
+  };
+  handleCheck = (id,e) => {
+    let data = this.state.data;
+    data.forEach( item => {
+      if(item.id===id){
+        item.selected = e.target.checked;
+      }
+    });
+    this.setState( {data} )
+  };
+  handleLike = (id,e) => {
+    let data = this.state.data;
+    data.forEach( item => {
+      if(item.id===id){
+        item.like = e.target.checked;
+      }
+    });
+    this.setState( {data} )
+  };
+  handleDelete = (id) => {
+    let data = this.state.data;
+    data = data.filter( item => {
+      if(item.id===id){
+        return false;
+      }
+      return true;
+    });
+    console.log(data);
+    this.setState( {data} )
+  };
+  
   render() {
     return (
         <div className={'app'}>
           <Header addList={this.addList}/>
-          <Main data={this.state.data}/>
+          <Main
+              data={this.state.data}
+              checkAll={this.checkAll()}
+              handleCheckAll={this.handleCheckAll}
+              handleCheck = {this.handleCheck}
+              handleLike = {this.handleLike}
+              handleDelete = {this.handleDelete}
+          />
           <Footer/>
         </div>
     )

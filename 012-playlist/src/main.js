@@ -7,11 +7,11 @@ export default class Main extends React.Component {
   }
   render() {
     return (
-        <table>
+        <table style={ {display: this.props.data.length>0?'table':'none'} }>
           <thead>
             <tr>
               <th>
-                <input type="checkbox"/>全选
+                <input type="checkbox" checked={this.props.checkAll} onChange={this.props.handleCheckAll}/>全选
               </th>
               <th>歌曲</th>
               <th>歌手</th>
@@ -22,7 +22,13 @@ export default class Main extends React.Component {
           <tbody>
             {
               this.props.data.map( (item,index) => <tr key={index}>
-                <Item data={item}/>
+                <Item
+                    index={index}
+                    data={item}
+                    handleCheck = {this.props.handleCheck}
+                    handleLike = {this.props.handleLike}
+                    handleDelete = {this.props.handleDelete}
+                />
               </tr> )
             }
           </tbody>
