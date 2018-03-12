@@ -1,0 +1,37 @@
+.app {
+  width: 800px;
+  margin: 60px auto;
+  background: #cdcdcd;
+}
+h1,form {
+  text-align: center;
+}
+table {
+  margin: 20px 0;
+  width: 800px;
+  text-align: center;
+  border: 1px solid grey;
+}
+
+input {
+  margin-right: 4px;
+}
+input[type='submit'] {
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  background: darkgreen;
+  color: #fff;
+  vertical-align: middle;
+}
+
+div.info {
+  overflow: hidden;
+  height: 50px;
+}
+div.info span {
+  float: left;
+}
+div.info span:last-of-type {
+  float: right;
+}
