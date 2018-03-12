@@ -21,15 +21,17 @@ export default class Main extends React.Component {
           </thead>
           <tbody>
             {
-              this.props.data.map( (item,index) => <tr key={index}>
-                <Item
-                    index={index}
-                    data={item}
-                    handleCheck = {this.props.handleCheck}
-                    handleLike = {this.props.handleLike}
-                    handleDelete = {this.props.handleDelete}
-                />
-              </tr> )
+              this.props.data.map( (item,index) => {
+                return (<tr key={index}>
+                  <Item
+                      index={index}
+                      data={item}
+                      handleCheck = {this.props.handleCheck}
+                      handleLike = {this.props.handleLike}
+                      handleDelete = {this.props.handleDelete}
+                  />
+                </tr>)
+              })
             }
           </tbody>
         </table>

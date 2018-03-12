@@ -39,7 +39,7 @@ let DATA = [
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {data: DATA}
+    this.state = {data: DATA,like_list:false}
   }
   maxId(){
     return Math.max(...this.props.data.map( (item) => item.id ));
@@ -100,20 +100,67 @@ class App extends React.Component {
     console.log(data);
     this.setState( {data} )
   };
+  computedData = (data,like_list) => {
+    if(!like_list){
+      return data;
+    }else {
+      return data.filter( item => item.like)
+    }
+  };
+  change_like_list = () => {
+    this.setState( {like_list:!this.state.like_list} )
+  };
+  delete_select = () => {
+    let new_data=this.state.data.filter( item => {
+      if(this.state.like_list){
+        return !(item.selected && item.like)
+      }else{
+        return !item.selected
+      }
+    });
+    this.setState( {data:new_data} )
+  };
+  
+  like_select = () => {
+    let new_data=this.state.data.map( item => {
+      if(item.selected){
+        item.like = true;
+      }
+      return item;
+    });
+    this.setState( {data:new_data} )
+  };
+  
+  dislike_select = () => {
+    let new_data=this.state.data.map( item => {
+      if(item.selected){
+        item.like = false;
+      }
+      return item;
+    });
+    this.setState( {data:new_data} )
+  };
   
   render() {
     return (
         <div className={'app'}>
           <Header addList={this.addList}/>
           <Main
-              data={this.state.data}
+              data={this.computedData(this.state.data,this.state.like_list)}
               checkAll={this.checkAll()}
               handleCheckAll={this.handleCheckAll}
               handleCheck = {this.handleCheck}
               handleLike = {this.handleLike}
               handleDelete = {this.handleDelete}
           />
-          <Footer/>
+          <Footer
+              data={this.computedData(this.state.data,this.state.like_list)}
+              change_like_list = {this.change_like_list}
+              like_list = {this.state.like_list}
+              delete_select = {this.delete_select}
+              like_select = {this.like_select}
+              dislike_select = {this.dislike_select}
+          />
         </div>
     )
   }

@@ -24,3 +24,14 @@ input[type='submit'] {
   color: #fff;
   vertical-align: middle;
 }
+
+div.info {
+  overflow: hidden;
+  height: 50px;
+}
+div.info span {
+  float: left;
+}
+div.info span:last-of-type {
+  float: right;
+}
