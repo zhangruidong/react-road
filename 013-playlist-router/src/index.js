@@ -45,8 +45,8 @@ class App extends React.Component {
     return Math.max(...this.props.data.map( (item) => item.id ));
   };
   checkAll() {
-    for (let i = 0; i < this.props.data.length; i++) {
-        if(!this.props.data[i].selected){
+    for (let i = 0; i < this.state.data.length; i++) {
+        if(!this.state.data[i].selected){
           return false;
         }
     }
@@ -145,14 +145,26 @@ class App extends React.Component {
     return (
         <BrowserRouter>
           <div className={'app'}>
-            <nav>
-              <Link to="/">首页</Link>
-              <span> | </span>
-              <Link to="/add">添加歌曲</Link>
-            </nav>
             <Switch>
-              <Route path={'/add'} component={Add}/>
-              <Route path={'/'}  component={Home}/>
+              <Route path="/add" render={ (e) => {
+                return <Add addList={this.addList} router={e}/>
+              }}/>
+              <Route path="/" render={ (e) => {
+                return (
+                    <Home
+                      data={this.state.data}
+                      pathname={e.location.pathname}
+                      handleCheckAll = {this.handleCheckAll}
+                      checkAll = {this.checkAll()}
+                      handleCheck = {this.handleCheck}
+                      handleLike = {this.handleLike}
+                      handleDelete = {this.handleDelete}
+                      delete_select = {this.delete_select}
+                      like_select = {this.like_select}
+                      dislike_select = {this.dislike_select}
+                    />
+                )
+              }}/>
             </Switch>
           </div>
         </BrowserRouter>
