@@ -8,7 +8,7 @@
   position: relative;
   min-height: 100px;
 }
-.add {
+.add,.back {
   cursor: pointer;
   position: absolute;
   right: 10px;
@@ -26,7 +26,16 @@
 h2.center {
   text-align: center;
 }
-
+.switch {
+  border: none;
+  outline: none;
+  text-decoration: underline;
+  color: green;
+  background: none;
+}
+.bold {
+  font-weight: bold;
+}
 
 
 h1,form {

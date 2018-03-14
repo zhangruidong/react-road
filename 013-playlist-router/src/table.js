@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link,Route,Switch} from 'react-router-dom';
 import Item from './item';
 
 class All extends React.Component {

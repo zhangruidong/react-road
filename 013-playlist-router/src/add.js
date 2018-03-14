@@ -16,17 +16,24 @@ export default class Add extends React.Component {
   };
   handleSubmit= (e) => {
     e.preventDefault();
-    this.props.addList(this.state);
-    this.setState({
-      title:'',
-      singer:''
-    });
-    this.props.router.history.push('/');
-  }
+    if(this.state.title && this.state.singer){
+      this.props.addList(this.state);
+      this.setState({
+        title:'',
+        singer:''
+      });
+      this.props.router.history.push('/');
+    }
+    
+  };
+  handleBack = () => {
+    this.props.router.history.goBack();
+  };
   render() {
     return (
         <React.Fragment>
-          <h1>播放列表</h1>
+          {this.props.length>0  && <div className={'back'} onClick={this.handleBack}>返回</div>}
+          <h1>添加歌曲</h1>
           <form onSubmit={this.handleSubmit}>
             <label>
               <input type="text" placeholder={'输入歌曲名称'} value={this.state.title} onChange={this.handleTitleChange}/>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link,Route,Switch} from 'react-router-dom';
+import {Link,Route,Switch,Redirect} from 'react-router-dom';
 import Table from './table';
 import Footer from './footer';
 class Home extends React.Component {
@@ -9,13 +9,11 @@ class Home extends React.Component {
         <div>
           <Link className={'add'} to="/add">添加歌曲</Link>
           <h2 className={'center'}>{this.props.pathname==='/'?'所有歌曲':'已收藏歌曲'}</h2>
-          <nav>
-            <Link to="/">所有歌曲</Link>
-            <span> | </span>
-            <Link to="/like">已收藏歌曲</Link>
-          </nav>
           <Switch>
-            <Route path={'/like'} render={ () => {
+            <Route path={'/like'} render={ (e) => {
+              if(like_data.length<1){
+                return <Redirect to={'/'}/>
+              }
               return (
                   <div>
                     <Table
@@ -27,7 +25,9 @@ class Home extends React.Component {
                         handleDelete = {this.props.handleDelete}
                     />
                     <Footer
+                        like={true}
                         data={like_data}
+                        router={e}
                         delete_select = {this.props.delete_select}
                         like_select = {this.props.like_select}
                         dislike_select = {this.props.dislike_select}
@@ -35,7 +35,7 @@ class Home extends React.Component {
                   </div>
               )
             }}/>
-            <Route path={'/'} render={ () => {
+            <Route path={'/'} render={ (e) => {
               return (
                   <div>
                     <Table
@@ -47,7 +47,10 @@ class Home extends React.Component {
                         handleDelete = {this.props.handleDelete}
                     />
                     <Footer
+                        like={false}
                         data={this.props.data}
+                        router={e}
+                        like_length={like_data.length}
                         delete_select = {this.props.delete_select}
                         like_select = {this.props.like_select}
                         dislike_select = {this.props.dislike_select}

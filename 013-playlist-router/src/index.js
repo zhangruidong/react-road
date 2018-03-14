@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Link,BrowserRouter,Route,Switch} from 'react-router-dom';
+import {BrowserRouter,Route,Switch,Redirect} from 'react-router-dom';
 import Home from './home';
 import Add from './add';
 import './App.css'
@@ -100,19 +100,9 @@ class App extends React.Component {
     console.log(data);
     this.setState( {data} )
   };
-  computedData = (data,like_list) => {
-    if(!like_list){
-      return data;
-    }else {
-      return data.filter( item => item.like)
-    }
-  };
-  change_like_list = () => {
-    this.setState( {like_list:!this.state.like_list} )
-  };
-  delete_select = () => {
+  delete_select = (like) => {
     let new_data=this.state.data.filter( item => {
-      if(this.state.like_list){
+      if(like){
         return !(item.selected && item.like)
       }else{
         return !item.selected
@@ -147,9 +137,12 @@ class App extends React.Component {
           <div className={'app'}>
             <Switch>
               <Route path="/add" render={ (e) => {
-                return <Add addList={this.addList} router={e}/>
+                return <Add addList={this.addList} length={this.state.data.length}  router={e}/>
               }}/>
               <Route path="/" render={ (e) => {
+                if(this.state.data.length<1){
+                  return <Redirect to="/add"/>
+                }
                 return (
                     <Home
                       data={this.state.data}
