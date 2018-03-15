@@ -22,12 +22,12 @@ export default class Add extends React.Component {
         title:'',
         singer:''
       });
-      this.props.router.history.push('/');
+      this.props.history.push('/');
     }
     
   };
   handleBack = () => {
-    this.props.router.history.goBack();
+    this.props.history.goBack();
   };
   render() {
     return (

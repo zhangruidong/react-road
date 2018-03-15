@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter,Route,Switch,Redirect} from 'react-router-dom';
 import Home from './home';
 import Add from './add';
-import './App.css'
+import './App.css';
 
 let DATA = [
   {
@@ -136,8 +136,8 @@ class App extends React.Component {
         <BrowserRouter>
           <div className={'app'}>
             <Switch>
-              <Route path="/add" render={ (e) => {
-                return <Add addList={this.addList} length={this.state.data.length}  router={e}/>
+              <Route path="/add" render={ (props) => {
+                return <Add addList={this.addList} length={this.state.data.length}   {...props}/>
               }}/>
               <Route path="/" render={ (e) => {
                 if(this.state.data.length<1){
