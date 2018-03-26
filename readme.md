@@ -27,5 +27,18 @@
 > 元素的key只有在它和它的兄弟节点对比时才有意义。<br> 比方说，如果你提取一个ListItem组件，你应该把key保存在数组中的这个`<ListItem />`元素上，而不是放在ListItem组件中的`<li>`元素上
 
 
+### react 中配置 sass
+1. npm install sass-loader node-sass --save-dev
+2. 在node_modules/react-scripts/config下找到 webpack.config.dev.js 文件，在 exclude 中添加 /.scss$/,
+3. 并在loaders中添加一项：
+```js
+    {
+        test: /\.scss$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader'],
+    }
+```
+> 注意，我们只是修改了 webpack.config.dev.js ,如果要在生产环境中生效，需要在webpack.config.prod.js做同样的配置。
+
+
 
 
