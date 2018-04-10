@@ -34,7 +34,7 @@
 ```js
     {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader'],
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
     }
 ```
 > 注意，我们只是修改了 webpack.config.dev.js ,如果要在生产环境中生效，需要在webpack.config.prod.js做同样的配置。
