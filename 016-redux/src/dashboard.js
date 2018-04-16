@@ -18,7 +18,7 @@ class Dashboard extends React.Component {
     const ele = (
             <div>
               <h1>dashboard</h1>
-              <button style={{color: 'green'}} onClick={this.props.logout}>登出{this.props.name}</button>
+              <button style={{color: 'green'}} onClick={this.props.logout}>登出{this.props.user}</button>
               <ul>
                 <li>
                   <Link to={`${MATCH.url}/`}>App</Link>

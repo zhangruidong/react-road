@@ -4,6 +4,7 @@ import {createStore,applyMiddleware,compose} from 'redux'
 import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
 import {BrowserRouter,Route,Switch,Redirect} from 'react-router-dom'
+import './config'
 
 
 import Auth from './auth'
